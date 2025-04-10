@@ -3,5 +3,4 @@
   become: yes
   roles:
     - update
-    - swap
     - node_exporter

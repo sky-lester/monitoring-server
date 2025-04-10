@@ -1,3 +1,5 @@
 - name: Update system packages
-  apt:
+  dnf:
+    name: "*"
+    state: latest
     update_cache: yes
