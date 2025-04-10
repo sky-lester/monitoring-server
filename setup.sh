@@ -2,12 +2,14 @@
 
 # Update system packages
 echo "Updating system packages..."
-export DEBIAN_FRONTEND=noninteractive
-sudo apt update -y && sudo apt upgrade -y
+sudo dnf update -y
 
 # Install Docker
 echo "Installing Docker..."
-sudo apt install -y docker.io git
+sudo dnf install -y dnf-plugins-core
+sudo dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+sudo dnf install -y docker-ce docker-ce-cli containerd.io git
+
 sudo systemctl start docker
 sudo systemctl enable docker
 sudo usermod -aG docker $USER
@@ -21,8 +23,9 @@ EONG
 
 # Install Ansible
 echo "Installing Ansible..."
-sudo apt remove --purge ansible -y
-sudo apt update && sudo apt install -y python3-pip
+sudo dnf remove -y ansible
+sudo dnf install -y python3-pip
+pip3 install --upgrade pip
 pip3 install ansible
 
 # Download Prometheus
@@ -34,19 +37,18 @@ rm prometheus-${PROM_VERSION}.linux-amd64.tar.gz
 
 git clone https://github.com/sky-lester/monitoring-server.git
 
-# Run Prometheus in Docker (Using sudo to avoid logout issues)
+# Run Prometheus in Docker
 echo "Starting Prometheus..."
 sudo docker run -d --name=prometheus \
   -p 9090:9090 \
   -v ~/monitoring-server/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml \
   prom/prometheus
 
-# Install and Run Grafana (Using sudo)
+# Run Grafana in Docker
 echo "Installing and starting Grafana..."
 sudo docker run -d --name=grafana \
   -p 3000:3000 \
   grafana/grafana
-
 
 PUBLIC_IP=$(curl -s http://icanhazip.com)
 
