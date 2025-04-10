@@ -32,7 +32,7 @@ tar xvf prometheus-${PROM_VERSION}.linux-amd64.tar.gz
 mv prometheus-${PROM_VERSION}.linux-amd64 prometheus
 rm prometheus-${PROM_VERSION}.linux-amd64.tar.gz
 
-git clone https://github.com/lhes23/monitoring-server.git
+git clone https://github.com/sky-lester/monitoring-server.git
 
 # Run Prometheus in Docker (Using sudo to avoid logout issues)
 echo "Starting Prometheus..."
