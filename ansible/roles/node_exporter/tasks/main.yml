@@ -1,7 +1,7 @@
 - name: Create a node_exporter user
   user:
     name: node_exporter
-    shell: /usr/sbin/nologin
+    shell: /sbin/nologin
     system: yes
     create_home: no
 
