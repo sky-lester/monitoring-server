@@ -1,0 +1,7 @@
+- name: Configure Servers
+  hosts: all
+  become: yes
+  roles:
+    - update
+    - swap
+    - node_exporter
