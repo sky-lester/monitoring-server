@@ -26,7 +26,7 @@ echo "Installing Ansible..."
 sudo dnf remove -y ansible
 sudo dnf install -y python3-pip
 pip3 install --upgrade pip
-pip3 install ansible
+pip3 install --user ansible
 
 # Download Prometheus
 PROM_VERSION="2.51.2"
