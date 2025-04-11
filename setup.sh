@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# Update system packages
-echo "Updating system packages..."
-sudo dnf update -y
-
 # Install Docker
 echo "Installing Docker..."
 sudo dnf install -y dnf-plugins-core
@@ -25,8 +21,8 @@ EONG
 echo "Installing Ansible..."
 sudo dnf remove -y ansible
 sudo dnf install -y python3-pip
-sudo pip3 install --upgrade pip
-sudo pip3 install ansible
+pip3 install --upgrade pip --user
+pip3 install ansible --user
 
 # Download Prometheus
 PROM_VERSION="2.51.2"
@@ -56,13 +52,25 @@ echo "Installation complete!"
 echo "Access Grafana at http://${PUBLIC_IP}:3000"
 echo "Access Prometheus at http://${PUBLIC_IP}:9090"
 
+
+# Generate SSH key pair for current user if not already existing
+if [ ! -f ~/.ssh/id_rsa ]; then
+  echo "Generating SSH key pair..."
+  mkdir -p ~/.ssh
+  ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -N ""
+  echo "SSH public key:"
+  cat ~/.ssh/id_rsa.pub
+else
+  echo "SSH key already exists at ~/.ssh/id_rsa"
+fi
+
 # Prompt user to run Ansible playbook manually
 echo "Copy the .pem file to the ~/.ssh directory"
-echo "scp -i ~/.ssh/ec2-users-key-us-east.pem ~/.ssh/ec2-users-key-us-east.pem ubuntu@${PUBLIC_IP}:~/.ssh/."
+echo "scp ~/.ssh/id_rsa.pub dev1@${PUBLIC_IP}:~/.ssh/."
 echo "To install playbook, run: ansible-playbook -i ~/monitoring-server/ansible/inventory.ini ~/monitoring-server/playbook.yml"
 
 
 cat <<EOF > ./run_command.txt
-scp -i ~/.ssh/ec2-users-key-us-east.pem ~/.ssh/ec2-users-key-us-east.pem ubuntu@${PUBLIC_IP}:~/.ssh/.
+scp  ~/.ssh/id_rsa.pub dev1@${PUBLIC_IP}:~/.ssh/.
 ansible-playbook -i ~/monitoring-server/ansible/inventory.ini ~/monitoring-server/ansible/playbook.yml
 EOF
