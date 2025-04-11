@@ -6,3 +6,4 @@ scrape_configs:
     static_configs:
       - targets:
           - 'ansible-managed-node:9100'
+          - 'traffic-feeder-qa:9100'
