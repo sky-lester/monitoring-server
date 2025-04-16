@@ -24,13 +24,6 @@ sudo dnf install -y python3-pip
 pip3 install --upgrade pip --user
 pip3 install ansible --user
 
-# Download Prometheus
-PROM_VERSION="2.51.2"
-wget https://github.com/prometheus/prometheus/releases/download/v${PROM_VERSION}/prometheus-${PROM_VERSION}.linux-amd64.tar.gz
-tar xvf prometheus-${PROM_VERSION}.linux-amd64.tar.gz
-mv prometheus-${PROM_VERSION}.linux-amd64 prometheus
-rm prometheus-${PROM_VERSION}.linux-amd64.tar.gz
-
 git clone https://github.com/sky-lester/monitoring-server.git
 
 # Run Prometheus in Docker
