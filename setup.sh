@@ -4,7 +4,7 @@
 echo "Installing Docker..."
 sudo dnf install -y dnf-plugins-core
 sudo dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-sudo dnf install -y docker-ce docker-ce-cli containerd.io git
+sudo dnf install -y docker-ce docker-ce-cli containerd.io git docker-compose-plugin
 
 sudo systemctl start docker
 sudo systemctl enable docker
@@ -26,18 +26,21 @@ pip3 install ansible --user
 
 git clone https://github.com/sky-lester/monitoring-server.git
 
-# Run Prometheus in Docker
-echo "Starting Prometheus..."
-sudo docker run -d --name=prometheus \
-  -p 9090:9090 \
-  -v ~/monitoring-server/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml \
-  prom/prometheus
+# # Run Prometheus in Docker
+# echo "Starting Prometheus..."
+# sudo docker run -d --name=prometheus \
+#   -p 9090:9090 \
+#   -v ~/monitoring-server/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml \
+#   prom/prometheus
 
-# Run Grafana in Docker
-echo "Installing and starting Grafana..."
-sudo docker run -d --name=grafana \
-  -p 3000:3000 \
-  grafana/grafana
+# # Run Grafana in Docker
+# echo "Installing and starting Grafana..."
+# sudo docker run -d --name=grafana \
+#   -p 3000:3000 \
+#   grafana/grafana
+
+cd ~/monitoring-server
+docker compose up -d
 
 PUBLIC_IP=$(curl -s http://icanhazip.com)
 
@@ -64,6 +67,5 @@ echo "To install playbook, run: ansible-playbook -i ~/monitoring-server/ansible/
 
 
 cat <<EOF > ./run_command.txt
-scp  ~/.ssh/id_rsa.pub dev1@${PUBLIC_IP}:~/.ssh/.
 ansible-playbook -i ~/monitoring-server/ansible/inventory.ini ~/monitoring-server/ansible/playbook.yml
 EOF
