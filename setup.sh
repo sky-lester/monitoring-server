@@ -40,7 +40,7 @@ git clone https://github.com/sky-lester/monitoring-server.git
 #   grafana/grafana
 
 cd ~/monitoring-server
-docker compose up -d
+sudo docker compose up -d
 
 PUBLIC_IP=$(curl -s http://icanhazip.com)
 
