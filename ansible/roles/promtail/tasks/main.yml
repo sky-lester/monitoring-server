@@ -9,6 +9,12 @@
   template:
     src: promtail-config.yml.j2
     dest: /etc/promtail/promtail-config.yml
+  
+- name: Ensure unzip is installed
+  become: true
+  package:
+    name: unzip
+    state: present
 
 - name: Download Promtail binary
   get_url:
