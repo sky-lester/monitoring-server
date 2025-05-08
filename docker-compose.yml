@@ -46,3 +46,20 @@ services:
     command: -config.file=/etc/promtail/promtail-config.yml
     networks:
       - monitor
+
+    nginx:
+      image: nginx:alpine
+      container_name: nginx
+      ports:
+        - "80:80"
+      volumes:
+        - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      restart: unless-stopped
+      depends_on:
+        - prometheus
+        - grafana
+        - loki
+        - promtail
+      networks:
+        - monitor
+
