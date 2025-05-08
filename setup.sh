@@ -26,19 +26,6 @@ pip3 install ansible --user
 
 git clone https://github.com/sky-lester/monitoring-server.git
 
-# # Run Prometheus in Docker
-# echo "Starting Prometheus..."
-# sudo docker run -d --name=prometheus \
-#   -p 9090:9090 \
-#   -v ~/monitoring-server/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml \
-#   prom/prometheus
-
-# # Run Grafana in Docker
-# echo "Installing and starting Grafana..."
-# sudo docker run -d --name=grafana \
-#   -p 3000:3000 \
-#   grafana/grafana
-
 cd ~/monitoring-server
 sudo docker compose up -d
 
@@ -60,12 +47,4 @@ else
   echo "SSH key already exists at ~/.ssh/id_rsa"
 fi
 
-# Prompt user to run Ansible playbook manually
-echo "Copy the .pem file to the ~/.ssh directory"
-echo "scp ~/.ssh/id_rsa.pub dev1@${PUBLIC_IP}:~/.ssh/."
 echo "To install playbook, run: ansible-playbook -i ~/monitoring-server/ansible/inventory.ini ~/monitoring-server/playbook.yml"
-
-
-cat <<EOF > ./run_command.txt
-ansible-playbook -i ~/monitoring-server/ansible/inventory.ini ~/monitoring-server/ansible/playbook.yml
-EOF
