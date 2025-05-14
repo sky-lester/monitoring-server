@@ -1,6 +1,6 @@
 - name: Configure Servers
   hosts: all
-  become: yes
+  become: true
   roles:
     - node_exporter
     - promtail
