@@ -7,8 +7,8 @@
 
 - name: Copy Promtail config
   template:
-    src: promtail-config.yml.j2
-    dest: /etc/promtail/promtail-config.yml
+    src: promtail-config.yaml.j2
+    dest: /etc/promtail/promtail-config.yaml
   notify: Restart Promtail
 
 - name: Ensure unzip is installed
@@ -48,7 +48,7 @@
       After=network.target
 
       [Service]
-      ExecStart=/usr/local/bin/promtail -config.file=/etc/promtail/promtail-config.yml
+      ExecStart=/usr/local/bin/promtail -config.file=/etc/promtail/promtail-config.yaml
       Restart=always
 
       [Install]
