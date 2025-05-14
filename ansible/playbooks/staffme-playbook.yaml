@@ -1,0 +1,6 @@
+---
+- name: Deploy WordPress to staging
+  hosts: wordpress
+  become: true
+  roles:
+    - wordpress_deploy
