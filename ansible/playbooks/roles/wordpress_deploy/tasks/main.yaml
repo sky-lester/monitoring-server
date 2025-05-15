@@ -1,12 +1,12 @@
 ---
-- name: Ensure rsync is installed
-  apt:
-    name: rsync
-    state: present
-    update_cache: yes
+# - name: Ensure rsync is installed
+#   apt:
+#     name: rsync
+#     state: present
+#     update_cache: yes
 
-- name: Sync uploads to cloud folder
-  command: rsync -avh /home/wordpress/uploads/ /mnt/gcs-uploads/
+# - name: Sync uploads to cloud folder
+#   command: rsync -avh /home/wordpress/uploads/ /mnt/gcs-uploads/
 
 - name: Ensure Git is installed
   apt:
@@ -15,7 +15,7 @@
 
 - name: Pull latest code from master
   git:
-    repo: 'git@github.com:your-org/cs-wordpress-site.git'
+    repo: 'git@github.com:skydevsolutionsinc/cs-wordpress-site.git'
     dest: /home/wordpress/cs-wordpress-site
     version: master
     force: yes
