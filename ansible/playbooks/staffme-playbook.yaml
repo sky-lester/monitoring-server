@@ -3,4 +3,4 @@
   hosts: wordpress
   become: true
   roles:
-    - wordpress_deploy
+    - run_script

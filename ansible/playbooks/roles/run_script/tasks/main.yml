@@ -1,0 +1,4 @@
+- name: Run deploy script
+  shell: /home/wordpress/scripts/deploy.sh
+  args:
+    chdir: /home/wordpress
