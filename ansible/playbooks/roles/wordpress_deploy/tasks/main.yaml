@@ -9,7 +9,7 @@
 #   command: rsync -avh /home/wordpress/uploads/ /mnt/gcs-uploads/
 
 - name: Ensure Git is installed
-  apt:
+  dnf:
     name: git
     state: present
 
