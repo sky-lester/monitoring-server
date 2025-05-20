@@ -1,6 +1,0 @@
----
-- name: Deploy WordPress to staging
-  hosts: wordpress
-  become: true
-  roles:
-    - run_script

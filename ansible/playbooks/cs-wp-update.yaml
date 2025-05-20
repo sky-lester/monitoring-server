@@ -1,0 +1,8 @@
+---
+- name: Update git branch to server
+  hosts: wordpress
+  become: true
+  roles:
+    - role: run_script
+      vars:
+        script_name: deploy.sh
