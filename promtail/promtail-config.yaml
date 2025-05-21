@@ -19,7 +19,8 @@ scrape_configs:
     labels:
       job: varlogs
       __path__: /var/log/*log
-  
+
+### Repo: cs-wordpress-site
 - job_name: audit
   static_configs:
   - targets:
@@ -28,4 +29,13 @@ scrape_configs:
       job: auditlogs
       host: staffme-wp-server
       __path__: /var/log/audit/audit.log
+
+- job_name: nginx-access
+  static_configs:
+  - targets:
+      - localhost
+    labels:
+      job: nginx-access
+      host: staffme-wp-server
+      __path__: /home/wordpress/cs-wordpress-site/config/nginx/logs/access.log
 
