@@ -6,7 +6,7 @@
 
 - name: Pull latest code from git
   become: true
-  become_user: wordpress
+  become_user: "{{ user }}"
   git:
     repo: "{{ repo }}"
     dest: "{{ dest }}"

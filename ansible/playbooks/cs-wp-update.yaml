@@ -5,6 +5,7 @@
   roles:
     - role: update_git
       vars:
+        user: "wordpress"
         repo: "git@github.com:skydevsolutionsinc/cs-wordpress-site.git"
         dest: "/home/wordpress/cs-wordpress-site"
         branch: "feature/docker"
