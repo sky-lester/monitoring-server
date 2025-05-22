@@ -20,3 +20,11 @@ scrape_configs:
       job: varlogs
       __path__: /var/log/*log
 
+- job_name: docker-containers
+  static_configs:
+  - targets:
+      - localhost
+    labels:
+      job: docker
+      host: grafana-server
+      __path__: /var/lib/docker/containers/*/*.log
