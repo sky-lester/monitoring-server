@@ -1,0 +1,15 @@
+---
+- name: Ensure Git is installed
+  dnf:
+    name: git
+    state: present
+
+- name: Pull latest code from git
+  become: true
+  become_user: wordpress
+  git:
+    repo: "{{ repo }}"
+    dest: "{{ dest }}"
+    version: "{{ branch }}"
+    force: yes
+    accept_hostkey: yes

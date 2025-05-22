@@ -3,6 +3,8 @@
   hosts: wordpress
   become: true
   roles:
-    - role: run_script
+    - role: update_git
       vars:
-        script_name: deploy.sh
+        repo: "git@github.com:skydevsolutionsinc/cs-wordpress-site.git"
+        dest: "/home/wordpress/cs-wordpress-site"
+        branch: "feature/docker"
