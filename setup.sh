@@ -2,7 +2,7 @@
 
 # Install Docker
 echo "Installing Docker..."
-sudo dnf install -y dnf-plugins-core
+sudo dnf install -y dnf-plugins-core unzip
 sudo dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 sudo dnf install -y docker-ce docker-ce-cli containerd.io git docker-compose-plugin
 
