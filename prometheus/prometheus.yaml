@@ -6,4 +6,7 @@ scrape_configs:
     static_configs:
       - targets: ['10.148.0.57:9100']
         labels:
-          name: staffme-wp-server
+          name: staffme-wp-live
+      - targets: ['10.148.15.192:9100']
+        labels:
+          name: staffme-wp-staging
