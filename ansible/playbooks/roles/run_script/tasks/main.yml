@@ -1,6 +1,0 @@
-- name: Run deploy script
-  shell: "./{{ script_name }}"
-  become: true
-  become_user: wordpress
-  args:
-    chdir: /home/wordpress/scripts

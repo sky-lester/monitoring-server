@@ -1,8 +1,0 @@
----
-- name: Sync uploads folder into Google Cloud Storage
-  hosts: wordpress
-  become: true
-  roles:
-    - role: run_script
-      vars:
-        script_name: backup_uploads.sh
