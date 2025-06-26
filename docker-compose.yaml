@@ -39,18 +39,18 @@ services:
     networks:
       - monitor
 
-  promtail:
-    image: grafana/promtail:latest
-    container_name: promtail
-    volumes:
-      - /var/log:/var/log
-      - /run/log/journal:/run/log/journal
-      - /etc/machine-id:/etc/machine-id
-      - ./promtail:/etc/promtail
-    restart: unless-stopped
-    command: -config.file=/etc/promtail/promtail-config.yaml
-    networks:
-      - monitor
+  # promtail:
+  #   image: grafana/promtail:latest
+  #   container_name: promtail
+  #   volumes:
+  #     - /var/log:/var/log
+  #     - /run/log/journal:/run/log/journal
+  #     - /etc/machine-id:/etc/machine-id
+  #     - ./promtail:/etc/promtail
+  #   restart: unless-stopped
+  #   command: -config.file=/etc/promtail/promtail-config.yaml
+  #   networks:
+  #     - monitor
 
   nginx:
     image: nginx:alpine
@@ -67,7 +67,7 @@ services:
       - prometheus
       - grafana
       - loki
-      - promtail
+      # - promtail
     networks:
       - monitor
 
